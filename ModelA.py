@@ -115,6 +115,7 @@ def draw():
     plt.figure(figsize=(10,5))
     ax1=plt.subplot2grid((1,2),(0,0))
     ax2=plt.subplot2grid((1,2),(0,1))
+
     for j in range(4):
         ax1.plot(tt,lit_theta[j],lit_color[j],label="$\\theta$={}".format(lit_label[j]))
         ax2.plot(tt,lit_theta[j],lit_color[j],label="$\\theta$={}".format(lit_label[j]))
@@ -131,6 +132,7 @@ def draw():
     plt.figure(figsize=(10,5))
     ax3=plt.subplot2grid((1,2),(0,0))
     ax4=plt.subplot2grid((1,2),(0,1))
+
     for j in range(4):
         ax3.plot(tt,lit_phi[j],lit_color[j],label="$\\theta$={}".format(lit_label[j]))
         ax4.plot(tt,lit_phi[j],lit_color[j],label="$\\theta$={}".format(lit_label[j]))
@@ -146,11 +148,30 @@ def draw():
 
     plt.show()
 
+    return 0
+
+def save():
+    file_1=open("data_1.txt",'w',encoding="utf-8")
+    file_2=open("data_2.txt",'w',encoding="utf-8")
+    for i in range(len(lit_theta)):
+        file_1.write(str(lit_theta[i]))
+        file_1.write('\n')
+    file_1.close()
+    for j in range(len(lit_phi)):
+        file_2.write(str(lit_phi[j]))
+        file_2.write('\n')
+    file_2.close()
+
+    return 0
+
 def main():
     lit_inv=[0.0873,0.1746,0.2616,0.3489]
     for i in range(len(lit_inv)):
         func(lit_inv[i])
+    save()
     draw()
+
+    return 0
 
 if __name__=="__main__":
     main()
